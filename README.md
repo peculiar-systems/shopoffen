@@ -64,6 +64,6 @@ source for every legal statement.
 ## Licence
 
 Code (`scanner/`, `report.py`, `build.py`): MIT. Report texts, templates and data (`i18n/`,
-`templates/`, `data/`): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). See `LICENSE`.
+`templates/`, `data/`): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). See `LICENSE` and `LICENSE-CONTENT`.
 
 Made by [Peculiar Systems](https://peculiar.systems), an independent software studio.

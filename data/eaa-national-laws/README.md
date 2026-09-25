@@ -65,4 +65,4 @@ check the linked source before relying on a record.
 ## Licence
 
 This data: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — attribution:
-"EAA national laws by Peculiar Systems". `build.py`: MIT. See the repository's [`LICENSE`](../../LICENSE).
+"EAA national laws by Peculiar Systems". `build.py`: MIT. See [`LICENSE-CONTENT`](../../LICENSE-CONTENT) and [`LICENSE`](../../LICENSE).
