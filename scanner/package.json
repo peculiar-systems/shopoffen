@@ -1,0 +1,18 @@
+{
+  "name": "shopoffen-scanner",
+  "version": "1.0.0",
+  "description": "Automated accessibility scan of an online shop's core pages (axe-core + robot checks)",
+  "main": "scan.js",
+  "scripts": {
+    "scan": "node scan.js"
+  },
+  "keywords": [],
+  "author": "Peculiar Systems",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "axe-core": "^4.13.0",
+    "puppeteer": "^25.9.0"
+  },
+  "private": true
+}
