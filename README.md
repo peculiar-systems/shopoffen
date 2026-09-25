@@ -25,8 +25,9 @@ supervisory authority and penalties, checked in the national gazettes:
 
 `en` `de` (+ `at`) `fr` (+ `be`) `it` `es` `nl` (+ `be`) `pl` `pt` `cs` `sv` `da` `fi` `ro` `hu` `el` (+ `cy`)
 
-The legal data is also published on its own, with sources, in
-[eaa-national-laws](https://github.com/peculiar-systems/eaa-national-laws).
+The legal data is also published as a dataset with sources — act, authority, penalties, where to
+publish the accessibility information, microenterprise exemption — for 17 countries in
+[`data/eaa-national-laws/`](data/eaa-national-laws/) (JSON and CSV).
 
 ## Run it
 
@@ -62,7 +63,7 @@ source for every legal statement.
 
 ## Licence
 
-Code (`scanner/`, `report.py`): MIT. Report texts and templates (`i18n/`, `templates/`):
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). See `LICENSE`.
+Code (`scanner/`, `report.py`, `build.py`): MIT. Report texts, templates and data (`i18n/`,
+`templates/`, `data/`): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). See `LICENSE`.
 
 Made by [Peculiar Systems](https://peculiar.systems), an independent software studio.

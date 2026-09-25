@@ -1,4 +1,4 @@
-Code (scanner/, report.py) — MIT License
+Code (scanner/, report.py, data/eaa-national-laws/build.py) — MIT License
 
 Copyright (c) 2026 Peculiar Systems
 
@@ -22,7 +22,7 @@ SOFTWARE.
 
 ---
 
-Report texts and templates (i18n/, templates/) — Creative Commons Attribution 4.0
+Report texts, templates and data (i18n/, templates/, data/) — Creative Commons Attribution 4.0
 International (CC BY 4.0), https://creativecommons.org/licenses/by/4.0/
 Attribution: "ShopOffen by Peculiar Systems, https://shopoffen.peculiar.systems".
 The legal summaries are informational and are not legal advice.
