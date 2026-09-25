@@ -20,7 +20,7 @@ the accessibility information the EAA asks for (Annex V).
 
 ## Languages and national law
 
-Reports are available in 15 languages. Each names the country's own transposition act,
+Reports come in the shop's own language. Each names the country's own transposition act,
 supervisory authority and penalties, checked in the national gazettes:
 
 `en` `de` (+ `at`) `fr` (+ `be`) `it` `es` `nl` (+ `be`) `pl` `pt` `cs` `sv` `da` `fi` `ro` `hu` `el` (+ `cy`)
