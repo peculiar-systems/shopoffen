@@ -4,8 +4,8 @@
  "legal": {
   "default": {
    "law": "ustawa z dnia 26 kwietnia 2024 r. o zapewnianiu spełniania wymagań dostępności niektórych produktów i usług przez podmioty gospodarcze (Dz.U. 2024 poz. 731)",
-   "authority": "Prezes Zarządu PFRON",
-   "fine": "kary pieniężne nakładane przez Prezesa Zarządu PFRON",
+   "authority": "minister właściwy do spraw informatyzacji (zawiadomienia przyjmuje Prezes Zarządu PFRON)",
+   "fine": "kary pieniężne nakładane przez ministra właściwego do spraw informatyzacji lub Prezesa Zarządu PFRON (art. 73 ustawy)",
    "law_short": "ustawa z 26 kwietnia 2024 r."
   }
  },

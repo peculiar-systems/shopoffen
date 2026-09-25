@@ -79,7 +79,7 @@
   "fb_phone": "telefoon",
   "skip": "Naar de inhoud",
   "again": "Nieuwe check",
-  "template_intro": "De wet (art. 6:230fb BW) vraagt deze informatie schriftelijk; de ACM noemt het een toegankelijkheidsverklaring die goed vindbaar moet zijn op de webwinkel. Vul de {PLAATSHOUDERS} in en schrap wat niet van toepassing is. Een hulpmiddel, geen juridisch advies.",
+  "template_intro": "De wet (art. 6:230fb BW, met bijlage V van de richtlijn) vraagt deze informatie in de algemene voorwaarden of een gelijkwaardig document; de ACM verwacht een toegankelijkheidsverklaring die goed vindbaar is op de webwinkel. Vul de {PLAATSHOUDERS} in en schrap wat niet van toepassing is. Een hulpmiddel, geen juridisch advies.",
   "score": "{p} van {n} checks geslaagd",
   "level_excellent": "Uitstekend",
   "level_strong": "Sterk",
