@@ -161,5 +161,32 @@
   "statement": "Le informazioni sull'accessibilità sono collegate dalla home",
   "feedback": "C'è un modo per segnalare le barriere",
   "screen_reader": "Uno screen reader annuncia nome, prezzo e pulsante d'acquisto"
+ },
+ "listen": {
+  "h": "Cosa sente una persona cieca sul tuo sito",
+  "to_buy": "Prima di arrivare al pulsante {q}{buy}{qe}, uno screen reader legge a una persona cieca {n} elementi.",
+  "unit": "elementi",
+  "home": "Sulla tua home page, uno screen reader legge a una persona cieca {n} elementi, dall'alto in basso.",
+  "bad": "Tra questi, una parola sola e nient'altro: {items}.",
+  "ok": "Ognuno ha un nome. Niente è solo «immagine».",
+  "show": "Mostra cosa legge",
+  "unnamed": "senza nome",
+  "foot": "Ogni screen reader lo dice in modo un po' diverso; i nomi vengono comunque dalla tua pagina.",
+  "roles": {
+   "image": "immagine",
+   "link": "link",
+   "button": "pulsante",
+   "heading": "intestazione di livello {l}",
+   "edit": "campo di testo",
+   "combo": "casella combinata",
+   "checkbox": "casella di controllo"
+  },
+  "q": [
+   "«",
+   "»"
+  ],
+  "play": "Ascolta",
+  "stop": "Stop",
+  "jump": "… saltiamo all'elemento n. {n}"
  }
 }

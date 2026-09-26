@@ -167,5 +167,32 @@
   "statement": "Barrierefreiheits-Angaben sind auf der Startseite verlinkt",
   "feedback": "Es gibt einen Weg, Barrieren zu melden",
   "screen_reader": "Ein Screenreader sagt Name, Preis und Kaufen-Button an"
+ },
+ "listen": {
+  "h": "Was ein blinder Mensch auf Ihrer Seite hört",
+  "bad": "Darunter nur ein Wort und sonst nichts: {items}.",
+  "ok": "Jedes davon hat einen Namen. Nichts heißt nur „Grafik“.",
+  "unnamed": "ohne Namen",
+  "foot": "Jeder Screenreader formuliert es etwas anders; die Namen kommen in jedem Fall aus Ihrer Seite.",
+  "roles": {
+   "image": "Grafik",
+   "link": "Link",
+   "button": "Schaltfläche",
+   "heading": "Überschrift Ebene {l}",
+   "edit": "Eingabefeld",
+   "combo": "Kombinationsfeld",
+   "checkbox": "Kontrollkästchen"
+  },
+  "q": [
+   "„",
+   "“"
+  ],
+  "to_buy": "Bis zur Schaltfläche {q}{buy}{qe} liest ein Screenreader einem blinden Menschen {n} Dinge vor.",
+  "home": "Auf Ihrer Startseite liest ein Screenreader einem blinden Menschen von oben nach unten {n} Dinge vor.",
+  "show": "Zeigen, was er vorliest",
+  "unit": "Dinge",
+  "play": "Anhören",
+  "stop": "Stopp",
+  "jump": "… weiter bei Nummer {n}"
  }
 }

@@ -167,5 +167,32 @@
   "statement": "Les informations sur l'accessibilité sont liées depuis l'accueil",
   "feedback": "Il existe un moyen de signaler les obstacles",
   "screen_reader": "Un lecteur d'écran annonce nom, prix et bouton d'achat"
+ },
+ "listen": {
+  "h": "Ce qu'entend une personne aveugle sur votre site",
+  "to_buy": "Avant d'atteindre le bouton {q}{buy}{qe}, un lecteur d'écran lit {n} éléments à une personne aveugle.",
+  "unit": "éléments",
+  "home": "Sur votre page d'accueil, un lecteur d'écran lit {n} éléments à une personne aveugle, de haut en bas.",
+  "bad": "Parmi eux, un simple mot suivi de rien : {items}.",
+  "ok": "Chacun a un nom. Rien n'est juste « image ».",
+  "show": "Afficher ce qu'il lit",
+  "unnamed": "sans nom",
+  "foot": "Chaque lecteur d'écran le formule un peu différemment ; les noms viennent de toute façon de votre page.",
+  "roles": {
+   "image": "image",
+   "link": "lien",
+   "button": "bouton",
+   "heading": "titre de niveau {l}",
+   "edit": "zone d'édition",
+   "combo": "liste déroulante",
+   "checkbox": "case à cocher"
+  },
+  "q": [
+   "« ",
+   " »"
+  ],
+  "play": "Écouter",
+  "stop": "Arrêter",
+  "jump": "… on saute à l'élément n° {n}"
  }
 }

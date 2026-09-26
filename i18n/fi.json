@@ -207,5 +207,32 @@
   "input-image-alt": "Kuvapainikkeilla on oltava tekstivastine",
   "autocomplete-valid": "autocomplete-määritettä on käytettävä oikein",
   "bypass": "Sivulla on oltava keino ohittaa toistuvat osiot"
+ },
+ "listen": {
+  "h": "Mitä sokea ihminen kuulee sivullasi",
+  "to_buy": "Ennen painiketta {q}{buy}{qe} ruudunlukija lukee sokealle ihmiselle {n} asiaa.",
+  "unit": "asiaa",
+  "home": "Etusivullasi ruudunlukija lukee sokealle ihmiselle ylhäältä alas {n} asiaa.",
+  "bad": "Niiden joukossa pelkkä sana eikä mitään muuta: {items}.",
+  "ok": "Kaikella on nimi. Mikään ei ole pelkkä ”kuva”.",
+  "show": "Näytä, mitä se lukee",
+  "unnamed": "ei nimeä",
+  "foot": "Jokainen ruudunlukija sanoo sen hieman eri tavalla; nimet tulevat joka tapauksessa sivultasi.",
+  "roles": {
+   "image": "kuva",
+   "link": "linkki",
+   "button": "painike",
+   "heading": "otsikko taso {l}",
+   "edit": "muokkauskenttä",
+   "combo": "yhdistelmäruutu",
+   "checkbox": "valintaruutu"
+  },
+  "q": [
+   "”",
+   "”"
+  ],
+  "play": "Kuuntele",
+  "stop": "Pysäytä",
+  "jump": "… hypätään kohtaan {n}"
  }
 }

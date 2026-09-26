@@ -161,5 +161,32 @@
   "statement": "As informações de acessibilidade têm ligação a partir da página inicial",
   "feedback": "Existe uma forma de comunicar barreiras",
   "screen_reader": "Um leitor de ecrã anuncia o nome, o preço e o botão de compra"
+ },
+ "listen": {
+  "h": "O que uma pessoa cega ouve no seu site",
+  "to_buy": "Até chegar ao botão {q}{buy}{qe}, um leitor de ecrã lê {n} coisas a uma pessoa cega.",
+  "unit": "coisas",
+  "home": "Na sua página inicial, um leitor de ecrã lê {n} coisas a uma pessoa cega, de cima para baixo.",
+  "bad": "Entre elas, uma palavra sozinha e mais nada: {items}.",
+  "ok": "Todas têm nome. Nada é apenas «imagem».",
+  "show": "Mostrar o que ele lê",
+  "unnamed": "sem nome",
+  "foot": "Cada leitor de ecrã diz isto de forma um pouco diferente; os nomes vêm sempre da sua página.",
+  "roles": {
+   "image": "imagem",
+   "link": "ligação",
+   "button": "botão",
+   "heading": "cabeçalho de nível {l}",
+   "edit": "campo de texto",
+   "combo": "caixa de combinação",
+   "checkbox": "caixa de verificação"
+  },
+  "q": [
+   "«",
+   "»"
+  ],
+  "play": "Ouvir",
+  "stop": "Parar",
+  "jump": "… saltamos para o elemento n.º {n}"
  }
 }

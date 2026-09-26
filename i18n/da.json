@@ -161,5 +161,32 @@
   "statement": "Tilgængelighedsoplysninger er linket fra forsiden",
   "feedback": "Der er en måde at melde barrierer på",
   "screen_reader": "En skærmlæser læser navn, pris og købsknap op"
+ },
+ "listen": {
+  "h": "Det hører en blind person på din side",
+  "to_buy": "Før knappen {q}{buy}{qe} læser en skærmlæser {n} ting op for en blind person.",
+  "unit": "ting",
+  "home": "På din forside læser en skærmlæser {n} ting op for en blind person, fra top til bund.",
+  "bad": "Blandt dem et enkelt ord og intet andet: {items}.",
+  "ok": "Alt har et navn. Intet hedder bare “grafik”.",
+  "show": "Vis, hvad den læser op",
+  "unnamed": "uden navn",
+  "foot": "Hver skærmlæser siger det lidt forskelligt; navnene kommer under alle omstændigheder fra din side.",
+  "roles": {
+   "image": "grafik",
+   "link": "link",
+   "button": "knap",
+   "heading": "overskrift niveau {l}",
+   "edit": "redigeringsfelt",
+   "combo": "kombinationsboks",
+   "checkbox": "afkrydsningsfelt"
+  },
+  "q": [
+   "“",
+   "”"
+  ],
+  "play": "Lyt",
+  "stop": "Stop",
+  "jump": "… vi springer til nummer {n}"
  }
 }

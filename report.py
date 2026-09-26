@@ -104,6 +104,14 @@ table.sr{border-collapse:collapse;margin-top:6px;font-size:14.5px}table.sr th{te
 details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 20px}
 summary{cursor:pointer;font-weight:600;color:var(--blue-strong)}
 pre.tpl{white-space:pre-wrap;font-family:"Geist Mono", ui-monospace, monospace;font-size:12.5px;line-height:1.55;margin-top:14px;color:var(--ink)}
+ol.listen{list-style:none;background:var(--ink);color:#fff;border-radius:var(--radius);padding:18px 22px;font-family:"Geist Mono",ui-monospace,monospace;font-size:13.5px;line-height:1.5;display:grid;gap:3px;overflow-wrap:anywhere}
+ol.listen .r{color:oklch(0.78 0.02 270);margin-right:8px}ol.listen .x{background:var(--magenta);color:#fff;border-radius:6px;padding:1px 7px;margin-right:8px}ol.listen .x+small{color:oklch(0.78 0.02 270)}ol.listen .jump{color:oklch(0.78 0.02 270);margin:8px 0}
+.listen-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px;margin-bottom:8px}
+.listen-n{font-family:"Geist Mono",ui-monospace,monospace;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
+.listen-n b{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:60px;font-weight:800;line-height:1;letter-spacing:-.02em;color:var(--ink);text-transform:none;margin-right:6px}
+.listen-lead{font-size:18px;font-weight:600;margin-top:8px;max-width:60ch}.listen-sum{color:var(--ink-soft);margin:6px 0 14px}.listen-sum.bad{color:var(--magenta);font-weight:600}
+.play{background:var(--ink);color:#fff;border:0;border-radius:11px;padding:9px 16px;font:inherit;font-weight:600;font-size:14.5px;cursor:pointer;margin-bottom:12px}.play::before{content:"▶\\00a0" / ""}.play[aria-pressed=true]::before{content:"■\\00a0" / ""}
+.listen-box details{border:0;padding:0;background:none}ol.listen{margin-top:12px}
 footer{border-top:1px solid var(--line);margin-top:56px;padding:24px 0;font-family:"Geist Mono", ui-monospace, monospace;font-size:12px;color:var(--ink-soft)}
 .foot-inner{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
 @media print{.nav,.btn,.skip{display:none}body{background:#fff}}
@@ -136,6 +144,17 @@ def fill(text, **kw):
 COPY_JS = ("document.querySelectorAll('[data-copy]').forEach(function(b){b.hidden=false;"
            "b.addEventListener('click',function(){navigator.clipboard.writeText(b.dataset.copy)"
            ".then(function(){b.textContent=b.dataset.done})})})")
+
+
+# "Listen" reads the transcript aloud with the browser's own speech (nothing leaves the page). Each line
+# carries its words in data-say; the button stays hidden where the browser cannot speak. Allowed by hash
+# like COPY_JS (SHOP_REPORT_CSP in _worker.js) — change one, recompute the other.
+SPEAK_JS = ("(function(){var b=document.querySelector('[data-speak]'),s=window.speechSynthesis;if(!b||!s)return;"
+            "b.hidden=false;b.addEventListener('click',function(){if(s.speaking){s.cancel();b.textContent=b.dataset.play;b.setAttribute('aria-pressed','false');return}"
+            "var d=b.closest('.listen-box').querySelector('details');if(d)d.open=true;var u;"
+            "document.querySelectorAll('ol.listen li').forEach(function(li){u=new SpeechSynthesisUtterance(li.dataset.say);"
+            "u.lang=document.documentElement.lang;s.speak(u)});if(u)u.onend=function(){b.textContent=b.dataset.play;b.setAttribute('aria-pressed','false')};"
+            "b.textContent=b.dataset.stop;b.setAttribute('aria-pressed','true')})})()")
 
 
 def attr(s):
@@ -210,7 +229,8 @@ def main():
     summary_rows = "".join(
         f"<li>{pill(i, str(counts[i]) + ' × ' + L['impact'][i])}</li>" for i in ("critical", "serious", "moderate", "minor") if counts.get(i))
     score_line = fill(t["score"], p=passed_checks, n=total_checks)
-    share = forward = script = ""
+    share = forward = ""
+    scripts = []
     if share_url:
         from urllib.parse import quote
         law_short = legal.get("law_short", legal["law"])
@@ -230,7 +250,7 @@ def main():
         forward = (f"<section id='forward'><h2>{esc(t['fwd_h'])}</h2><div class='fwd'><p>{esc(t['fwd_intro'])}</p>"
                    f"<div class='share'><a href='{mail}'>{esc(t['share_mail'])}</a>"
                    f"<a href='{wa}' target='_blank' rel='noopener'>WhatsApp</a>{copy_btn}</div></div></section>")
-        script = f"<script>{COPY_JS}</script>"
+        scripts.append(COPY_JS)
     body = f"""
 <header class="hero">
   <span class="tag"><span class="dot-s"></span>{esc(t["h1"])}</span>
@@ -247,6 +267,39 @@ def main():
         body += f"<p class='note'>{fill(esc(t['unreachable']), urls=', '.join(esc(p['url']) for p in failed))}</p>"
     if good:
         body += f"<section><h2>{esc(t['h_good'])}</h2><ul class='good'>" + "".join(f"<li>{esc(L['good'][k])}</li>" for k in good if k in L["good"]) + "</ul></section>"
+
+    # ---- listen: one oddly precise number — how much a screen reader reads before the buy button
+    # (product page), or on the home page when no buy button was found; the list itself sits behind a toggle
+    LL = L.get("listen")
+    lp = next((p for p in (product, home) if p and isinstance(p.get("listen"), dict) and p["listen"].get("first")
+               and (p is home or p["listen"].get("buy"))), None)
+    if LL and lp:
+        ls = lp["listen"]
+        qa, qb = LL["q"]
+
+        def spoken(x):
+            role = fill(LL["roles"].get(x["k"], ""), l=x.get("l", ""))
+            say = attr(", ".join(w for w in (x["n"], "" if x["k"] == "text" else role) if w))
+            if x["k"] == "text":
+                return f"<li data-say=\"{say}\">{qa}{esc(x['n'])}{qb}</li>"
+            if not x["n"]:
+                return f"<li data-say=\"{say}\"><span class='x'>{esc(role)}</span><small>— {esc(LL['unnamed'])}</small></li>"
+            return f"<li data-say=\"{say}\"><span class='r'>{esc(role)}</span>{qa}{esc(x['n'])}{qb}</li>"
+        jump = ""
+        if ls.get("worst"):
+            say = fill(LL["jump"], n=ls["worstAt"])
+            jump = (f"<li class='jump' data-say=\"{attr(say)}\">{esc(say)}</li>" + "".join(spoken(x) for x in ls["worst"]))
+        lead = (fill(esc(LL["to_buy"]), buy=esc(ls["buy"]), n=ls["read"], q=qa, qe=qb) if ls.get("buy")
+                else fill(esc(LL["home"]), n=ls["read"]))
+        parts = [f"{qa}{LL['roles'][k]}{qb} ×{ls['unnamed'][k]}" for k in ("image", "link", "button") if ls["unnamed"].get(k)]
+        verdict = fill(esc(LL["bad"]), items=esc(" · ".join(parts))) if parts else esc(LL["ok"])
+        body += (f"<section><h2>{esc(LL['h'])}</h2><div class='listen-box'>"
+                 f"<p class='listen-n'><b>{ls['read']}</b> {esc(LL['unit'])}</p><p class='listen-lead'>{lead}</p>"
+                 f"<p class='listen-sum{' bad' if parts else ''}'>{verdict}</p>"
+                 f"<button type='button' class='play' aria-pressed='false' hidden data-speak data-play=\"{attr(LL['play'])}\" data-stop=\"{attr(LL['stop'])}\">{esc(LL['play'])}</button>"
+                 f"<details><summary>{esc(LL['show'])}</summary><ol class='listen'>{''.join(spoken(x) for x in ls['first'])}{jump}</ol></details>"
+                 f"</div><p class='more'>{esc(LL['foot'])}</p></section>")
+        scripts.append(SPEAK_JS)
 
     # ---- axe findings ----
     body += (f"<section><h2>{esc(t['h_fix'])}</h2>"
@@ -346,7 +399,7 @@ def main():
 <nav class="nav"><div class="wrap nav-inner"><a class="brand" href="{home_url}">ShopOffen<span class="dot">.</span></a><a class="btn" href="{home_url}#get">{esc(t.get('again', 'New check'))} →</a></div></nav>
 <!--email_off--><main id="main" class="wrap">{body}</main><!--/email_off-->
 <footer><div class="wrap foot-inner"><span>© Peculiar Systems</span><span>{esc(t['footer'])}</span></div></footer>
-{script}</body></html>"""
+{"".join(f"<script>{js}</script>" for js in scripts)}</body></html>"""
 
     OUT.mkdir(exist_ok=True)
     out = OUT / f"Bericht-{host.replace('/', '_')}-{date.today().isoformat()}.html"

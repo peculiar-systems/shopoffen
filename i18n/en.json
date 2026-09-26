@@ -161,5 +161,32 @@
   "statement": "Accessibility information is linked from the home page",
   "feedback": "There is a way to report barriers",
   "screen_reader": "A screen reader announces name, price and buy button"
+ },
+ "listen": {
+  "h": "What a blind shopper hears",
+  "bad": "Among them, a bare word with nothing after it: {items}.",
+  "ok": "Every one of them has a name. Nothing is just “image”.",
+  "unnamed": "no name",
+  "foot": "Each screen reader words it a little differently; the names come from your page either way.",
+  "roles": {
+   "image": "image",
+   "link": "link",
+   "button": "button",
+   "heading": "heading level {l}",
+   "edit": "text field",
+   "combo": "combo box",
+   "checkbox": "checkbox"
+  },
+  "q": [
+   "“",
+   "”"
+  ],
+  "to_buy": "To reach the {q}{buy}{qe} button, a screen reader first reads a blind shopper {n} things.",
+  "home": "On your home page, a screen reader reads a blind shopper {n} things from top to bottom.",
+  "show": "Show what it reads",
+  "unit": "things",
+  "play": "Listen",
+  "stop": "Stop",
+  "jump": "… skipping ahead to thing no. {n}"
  }
 }

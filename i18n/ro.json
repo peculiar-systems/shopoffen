@@ -207,5 +207,32 @@
   "input-image-alt": "Butoanele-imagine trebuie să aibă text alternativ",
   "autocomplete-valid": "Atributul autocomplete trebuie folosit corect",
   "bypass": "Pagina trebuie să permită sărirea peste blocurile repetate"
+ },
+ "listen": {
+  "h": "Ce aude o persoană nevăzătoare pe site-ul tău",
+  "to_buy": "Până la butonul {q}{buy}{qe}, cititorul de ecran îi citește unei persoane nevăzătoare atâtea lucruri: {n}.",
+  "unit": "în total",
+  "home": "Pe pagina ta principală, cititorul de ecran îi citește unei persoane nevăzătoare, de sus până jos, atâtea lucruri: {n}.",
+  "bad": "Printre ele, doar un cuvânt și nimic altceva: {items}.",
+  "ok": "Totul are un nume. Nimic nu e doar „imagine”.",
+  "show": "Arată ce citește",
+  "unnamed": "fără nume",
+  "foot": "Fiecare cititor de ecran o spune puțin altfel; numele vin oricum din pagina ta.",
+  "roles": {
+   "image": "imagine",
+   "link": "link",
+   "button": "buton",
+   "heading": "titlu de nivel {l}",
+   "edit": "câmp de editare",
+   "combo": "casetă combinată",
+   "checkbox": "casetă de selectare"
+  },
+  "q": [
+   "„",
+   "”"
+  ],
+  "play": "Ascultă",
+  "stop": "Oprește",
+  "jump": "… sărim la elementul nr. {n}"
  }
 }

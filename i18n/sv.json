@@ -161,5 +161,32 @@
   "statement": "Tillgänglighetsinformationen länkas från startsidan",
   "feedback": "Det finns ett sätt att anmäla hinder",
   "screen_reader": "En skärmläsare läser upp namn, pris och köpknapp"
+ },
+ "listen": {
+  "h": "Det här hör en blind person på din sida",
+  "to_buy": "Innan knappen {q}{buy}{qe} läser en skärmläsare upp {n} saker för en blind person.",
+  "unit": "saker",
+  "home": "På din startsida läser en skärmläsare upp {n} saker för en blind person, uppifrån och ner.",
+  "bad": "Bland dem bara ett ord och inget mer: {items}.",
+  "ok": "Allt har ett namn. Inget heter bara ”bild”.",
+  "show": "Visa vad den läser upp",
+  "unnamed": "utan namn",
+  "foot": "Varje skärmläsare säger det lite olika; namnen kommer ändå från din sida.",
+  "roles": {
+   "image": "bild",
+   "link": "länk",
+   "button": "knapp",
+   "heading": "rubrik nivå {l}",
+   "edit": "redigeringsfält",
+   "combo": "kombinationsruta",
+   "checkbox": "kryssruta"
+  },
+  "q": [
+   "”",
+   "”"
+  ],
+  "play": "Lyssna",
+  "stop": "Stoppa",
+  "jump": "… vi hoppar till nummer {n}"
  }
 }

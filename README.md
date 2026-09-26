@@ -12,6 +12,7 @@ checks axe does not do:
 - **Reflow** — does the page work at 320 px without horizontal scrolling?
 - **Keyboard** — a Tab walk through the home page: is focus visible, are there hidden stops or traps?
 - **Screen reader** — does the product page expose a heading, a price and a named buy button?
+- **Listen** — how many things a screen reader reads before the buy button, and how many of them are just "image" or "button" with no name. The report can read the start of the page aloud with the browser's own speech.
 - **Accessibility information** — is it linked from the home page, and does it offer a way to report barriers?
 
 The report is written for the shop owner, not the developer: what already works first, then

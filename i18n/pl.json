@@ -161,5 +161,32 @@
   "statement": "Informacje o dostępności są podlinkowane ze strony głównej",
   "feedback": "Jest sposób zgłaszania barier",
   "screen_reader": "Czytnik ekranu odczytuje nazwę, cenę i przycisk zakupu"
+ },
+ "listen": {
+  "h": "Co słyszy niewidoma osoba na twojej stronie",
+  "to_buy": "Zanim dotrze do przycisku {q}{buy}{qe}, czytnik ekranu przeczyta niewidomej osobie {n} rzeczy.",
+  "unit": "rzeczy",
+  "home": "Na twojej stronie głównej czytnik ekranu czyta niewidomej osobie od góry do dołu {n} rzeczy.",
+  "bad": "Wśród nich samo słowo i nic więcej: {items}.",
+  "ok": "Wszystko ma nazwę. Nic nie nazywa się tylko „grafika”.",
+  "show": "Pokaż, co czyta",
+  "unnamed": "bez nazwy",
+  "foot": "Każdy czytnik ekranu mówi to trochę inaczej; nazwy i tak pochodzą z twojej strony.",
+  "roles": {
+   "image": "grafika",
+   "link": "link",
+   "button": "przycisk",
+   "heading": "nagłówek poziomu {l}",
+   "edit": "pole edycji",
+   "combo": "pole kombi",
+   "checkbox": "pole wyboru"
+  },
+  "q": [
+   "„",
+   "”"
+  ],
+  "play": "Posłuchaj",
+  "stop": "Zatrzymaj",
+  "jump": "… przeskakujemy do pozycji {n}"
  }
 }

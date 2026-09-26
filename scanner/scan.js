@@ -133,6 +133,8 @@ async function keyboardCheck(page) {
     invisible: uniq(noFocus).length, invisibleExamples: uniq(noFocus).slice(0, 5).map(s => `${s.tag}: ${s.label}`), trapped, trapAt: trapped ? [...new Set(tail)].slice(0, 3).map(k => (real.find(s => (s.idx ?? s.label) === k) || {}).label) : [] };
 }
 
+const BUY_RE = /(add to (cart|bag|basket)|buy|warenkorb|kaufen|in den korb|panier|acheter|carrello|acquista|cesta|comprar|winkelwagen|bestellen|koszyk|kup|carrinho|cesto|encomendar|do košíku|do kosiku|koupit|varukorg|kundvagn|köp|læg i kurv|tilføj til kurv|køb|ostoskoriin|lisää koriin|\bosta\b|în coș|în coş|in cos|cumpără|cumpara|kosárba|megveszem|megrendelem|στο καλάθι|αγορ)/i;
+
 // Screen reader: what the accessibility tree offers on the product page — heading, price, buy button.
 async function screenReaderCheck(page) {
   const tree = await page.accessibility.snapshot({ interestingOnly: true });
@@ -140,12 +142,47 @@ async function screenReaderCheck(page) {
   (function walk(n) { if (!n) return; nodes.push(n); (n.children || []).forEach(walk); })(tree);
   if (nodes.length < 5) return { unavailable: true };   // bot wall or empty shell — say so, don't report "missing"
   const h1 = nodes.find(n => n.role === "heading" && n.level === 1);
-  const buyRe = /(add to (cart|bag|basket)|buy|warenkorb|kaufen|in den korb|panier|acheter|carrello|acquista|cesta|comprar|winkelwagen|bestellen|koszyk|kup|carrinho|cesto|encomendar|do košíku|do kosiku|koupit|varukorg|kundvagn|köp|læg i kurv|tilføj til kurv|køb|ostoskoriin|lisää koriin|\bosta\b|în coș|în coş|in cos|cumpără|cumpara|kosárba|megveszem|megrendelem|στο καλάθι|αγορ)/i;
-  const buy = nodes.find(n => n.role === "button" && buyRe.test(n.name || ""));
+  const buy = nodes.find(n => n.role === "button" && BUY_RE.test(n.name || ""));
   const priceRe = /(\d[\d.,\s]*\s?(€|eur|zł|pln|kr|sek|dkk|kč|czk|lei|ron|ft|huf|chf|£|\$))|((€|£|\$|kr\.?)\s?\d)/i;
   const price = nodes.find(n => (n.role === "StaticText" || n.role === "text" || n.role === "generic") && priceRe.test(n.name || ""));
   const unnamedButtons = nodes.filter(n => n.role === "button" && !(n.name || "").trim()).length;
   return { h1: h1 ? h1.name : null, buy: buy ? buy.name : null, price: price ? price.name.slice(0, 60) : null, unnamedButtons };
+}
+
+// Listen: the home page read out loud, top to bottom, the way a screen reader walks it. The full
+// tree, not interestingOnly — Chrome drops unnamed images from the "interesting" one, and those are
+// exactly what a blind shopper hears as a bare "image". Links, buttons and headings are read once,
+// their inner text is not repeated.
+async function listenCheck(page, toBuy) {
+  const tree = await page.accessibility.snapshot({ interestingOnly: false });
+  const SPOKEN = { image: "image", img: "image", link: "link", button: "button", heading: "heading",
+    textbox: "edit", searchbox: "edit", combobox: "combo", checkbox: "checkbox", StaticText: "text" };
+  const seq = [];
+  (function walk(n) {
+    if (!n || seq.length >= 5000) return;
+    const kind = SPOKEN[n.role];
+    const name = (n.name || "").replace(/\s+/g, " ").trim();
+    if (kind && !(kind === "text" && !name)) {
+      seq.push({ k: kind, n: name.slice(0, 70), ...(kind === "heading" && n.level ? { l: n.level } : {}) });
+      if (kind !== "text") return;   // a named control is read once
+    }
+    (n.children || []).forEach(walk);
+  })(tree);
+  if (seq.length < 5) return { unavailable: true };
+  // on the product page: how much the shopper sits through before the buy button
+  const buyAt = toBuy ? seq.findIndex(s => s.k === "button" && BUY_RE.test(s.n)) : -1;
+  const heard = buyAt >= 0 ? seq.slice(0, buyAt + 1) : seq;
+  const unnamed = {};
+  heard.forEach(s => { if (s.k !== "text" && s.k !== "heading" && !s.n) unnamed[s.k] = (unnamed[s.k] || 0) + 1; });
+  // the stretch with the most bare words, when it lies past the start — that is what the shopper should hear
+  const bare = s => s.k !== "text" && s.k !== "heading" && !s.n;
+  let worst = null, most = 1;
+  for (let i = 24; i + 12 <= heard.length; i++) {
+    const c = heard.slice(i, i + 12).filter(bare).length;
+    if (c > most) { most = c; worst = i; }
+  }
+  return { read: heard.length, unnamed, first: seq.slice(0, 24), ...(worst !== null ? { worst: heard.slice(worst, worst + 12), worstAt: worst + 1 } : {}),
+    ...(buyAt >= 0 ? { buy: seq[buyAt].n } : {}) };
 }
 
 // Feedback channel: does the accessibility statement give a way to report barriers?
@@ -249,9 +286,13 @@ async function scanPage(browser, url, label, axeSource, locale) {
     result.reflow = await reflowCheck(page).catch(e => ({ error: e.message.slice(0, 120) }));
     if (label === "home") {
       await page.goto(url, { waitUntil: "networkidle2", timeout: 60000 }).catch(() => {});
+      result.listen = await listenCheck(page).catch(e => ({ error: e.message.slice(0, 120) }));
       result.keyboard = await keyboardCheck(page).catch(e => ({ error: e.message.slice(0, 120) }));
     }
-    if (label === "product") result.screenReader = await screenReaderCheck(page).catch(e => ({ error: e.message.slice(0, 120) }));
+    if (label === "product") {
+      result.screenReader = await screenReaderCheck(page).catch(e => ({ error: e.message.slice(0, 120) }));
+      result.listen = await listenCheck(page, true).catch(e => ({ error: e.message.slice(0, 120) }));
+    }
   } catch (e) {
     result.error = e.message;
   }

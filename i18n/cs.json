@@ -207,5 +207,32 @@
   "input-image-alt": "Obrázková tlačítka musí mít alternativní text",
   "autocomplete-valid": "Atribut autocomplete musí být použit správně",
   "bypass": "Stránka musí umožnit přeskočit opakující se bloky"
+ },
+ "listen": {
+  "h": "Co slyší nevidomý člověk na vašem webu",
+  "to_buy": "Než dojde k tlačítku {q}{buy}{qe}, přečte čtečka obrazovky nevidomému člověku {n} věcí.",
+  "unit": "věcí",
+  "home": "Na vaší úvodní stránce přečte čtečka obrazovky nevidomému člověku shora dolů {n} věcí.",
+  "bad": "Mezi nimi jen slovo a nic dalšího: {items}.",
+  "ok": "Všechno má název. Nic není jen „obrázek“.",
+  "show": "Ukázat, co čte",
+  "unnamed": "bez názvu",
+  "foot": "Každá čtečka to říká trochu jinak; názvy ale vždy pocházejí z vaší stránky.",
+  "roles": {
+   "image": "obrázek",
+   "link": "odkaz",
+   "button": "tlačítko",
+   "heading": "nadpis úrovně {l}",
+   "edit": "editační pole",
+   "combo": "rozbalovací seznam",
+   "checkbox": "zaškrtávací pole"
+  },
+  "q": [
+   "„",
+   "“"
+  ],
+  "play": "Poslechnout",
+  "stop": "Zastavit",
+  "jump": "… přeskakujeme na položku č. {n}"
  }
 }

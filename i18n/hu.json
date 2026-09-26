@@ -207,5 +207,32 @@
   "input-image-alt": "A képgomboknak szöveges alternatívával kell rendelkezniük",
   "autocomplete-valid": "Az autocomplete attribútumot helyesen kell használni",
   "bypass": "Az oldalon lehetőséget kell adni az ismétlődő blokkok átugrására"
+ },
+ "listen": {
+  "h": "Mit hall egy vak ember az Ön oldalán",
+  "to_buy": "Mielőtt a vásárlás gombjához ér ({q}{buy}{qe}), a képernyőolvasó {n} dolgot olvas fel egy vak embernek.",
+  "unit": "dolog",
+  "home": "Az Ön kezdőlapján a képernyőolvasó fentről lefelé {n} dolgot olvas fel egy vak embernek.",
+  "bad": "Köztük csak egy szó, semmi más: {items}.",
+  "ok": "Mindennek van neve. Semmi sem csak „kép”.",
+  "show": "Mutassa, mit olvas fel",
+  "unnamed": "név nélkül",
+  "foot": "Minden képernyőolvasó kicsit másképp mondja; a nevek mindenképp az Ön oldaláról származnak.",
+  "roles": {
+   "image": "kép",
+   "link": "hivatkozás",
+   "button": "gomb",
+   "heading": "{l}. szintű címsor",
+   "edit": "szerkesztőmező",
+   "combo": "kombinált lista",
+   "checkbox": "jelölőnégyzet"
+  },
+  "q": [
+   "„",
+   "”"
+  ],
+  "play": "Meghallgatás",
+  "stop": "Leállítás",
+  "jump": "… ugrás ide: {n}. elem"
  }
 }

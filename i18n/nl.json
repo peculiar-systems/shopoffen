@@ -167,5 +167,32 @@
   "statement": "Toegankelijkheidsinformatie is gelinkt vanaf de homepage",
   "feedback": "Er is een manier om drempels te melden",
   "screen_reader": "Een schermlezer noemt naam, prijs en koopknop"
+ },
+ "listen": {
+  "h": "Wat een blinde bezoeker op uw site hoort",
+  "to_buy": "Tot aan de knop {q}{buy}{qe} leest een schermlezer een blinde bezoeker {n} dingen voor.",
+  "unit": "dingen",
+  "home": "Op uw startpagina leest een schermlezer een blinde bezoeker van boven naar beneden {n} dingen voor.",
+  "bad": "Daaronder alleen een woord en verder niets: {items}.",
+  "ok": "Alles heeft een naam. Niets heet alleen „afbeelding”.",
+  "show": "Tonen wat hij voorleest",
+  "unnamed": "zonder naam",
+  "foot": "Elke schermlezer zegt het net iets anders; de namen komen hoe dan ook uit uw pagina.",
+  "roles": {
+   "image": "afbeelding",
+   "link": "link",
+   "button": "knop",
+   "heading": "kop niveau {l}",
+   "edit": "invoerveld",
+   "combo": "keuzelijst",
+   "checkbox": "selectievakje"
+  },
+  "q": [
+   "„",
+   "”"
+  ],
+  "play": "Beluisteren",
+  "stop": "Stoppen",
+  "jump": "… we springen naar nummer {n}"
  }
 }
